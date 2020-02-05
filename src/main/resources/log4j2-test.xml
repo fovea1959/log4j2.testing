@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="INFO" packages="org.wegscd">
+<Configuration status="DEBUG" packages="org.wegscd">
     <Appenders>
         <Console name="Console">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
@@ -14,11 +14,13 @@
                 </Route>
             </Routes>
         </Routing>
+        <DriverStation name="DS"/>
     </Appenders>
     <Loggers>
         <Root level="trace">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="MyRoute"/>
+            <AppenderRef ref="DS"/>
         </Root>
     </Loggers>
 </Configuration>
