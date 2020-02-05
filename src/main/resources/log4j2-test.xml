@@ -14,7 +14,7 @@
                 </Route>
             </Routes>
         </Routing>
-        <DriverStation name="DS"/>
+        <DriverStation_v1 name="DS"/>
     </Appenders>
     <Loggers>
         <Root level="trace">

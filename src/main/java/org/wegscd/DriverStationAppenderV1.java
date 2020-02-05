@@ -9,26 +9,25 @@ import org.apache.logging.log4j.core.config.plugins.PluginElement;
 import org.apache.logging.log4j.core.config.plugins.PluginFactory;
 import org.apache.logging.log4j.core.layout.PatternLayout;
 
-import java.io.IOException;
 import java.io.Serializable;
 
-@Plugin(name = "DriverStation", category = Core.CATEGORY_NAME, elementType = Appender.ELEMENT_TYPE, printObject = true)
-public class DriverStationAppender extends AbstractAppender {
+@Plugin(name = "DriverStation_v1", category = Core.CATEGORY_NAME, elementType = Appender.ELEMENT_TYPE, printObject = true)
+public class DriverStationAppenderV1 extends AbstractAppender {
 
-    public DriverStationAppender(final String name, final Filter filter, final Layout<? extends Serializable> layout) {
+    public DriverStationAppenderV1(final String name, final Filter filter, final Layout<? extends Serializable> layout) {
         super(name, filter, layout, false, null);
     }
 
     @PluginFactory
-    public static DriverStationAppender createAppender(@PluginAttribute("name") String name,
-                                               @PluginAttribute("ignoreExceptions") boolean ignoreExceptions,
-                                               @PluginElement("Layout") Layout layout,
-                                               @PluginElement("Filters") Filter filter) {
+    public static DriverStationAppenderV1 createAppender(@PluginAttribute("name") String name,
+                                                         @PluginAttribute("ignoreExceptions") boolean ignoreExceptions,
+                                                         @PluginElement("Layout") Layout layout,
+                                                         @PluginElement("Filters") Filter filter) {
         if (layout == null) {
             layout = PatternLayout.createDefaultLayout();
         }
 
-        return new DriverStationAppender(name, filter, layout);
+        return new DriverStationAppenderV1(name, filter, layout);
     }
 
     @Override
