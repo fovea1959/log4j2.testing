@@ -15,12 +15,11 @@ import java.io.Serializable;
 public class DriverStationAppender extends AbstractAppender {
 
     public DriverStationAppender(final String name, final Filter filter, final Layout<? extends Serializable> layout) {
-        super(name, filter, layout, false, null);
+        super(name, filter, layout, true, null);
     }
 
     @PluginFactory
     public static DriverStationAppender createAppender(@PluginAttribute("name") String name,
-                                                       @PluginAttribute("ignoreExceptions") boolean ignoreExceptions,
                                                        @PluginElement("Layout") Layout<? extends Serializable> layout,
                                                        @PluginElement("Filters") Filter filter) {
         if (layout == null) {

@@ -8,7 +8,7 @@
             <TimeIsSetFilter/>
             <Routes pattern="">
                 <Route>
-                    <File name="MyFile" createOnDemand="true" fileName="${date:yyyyMMdd-HHmmss}.log">
+                    <File name="MyFile" createOnDemand="true" fileName="${roborio:logdir}/${date:yyyyMMdd-HHmmss}.log">
                         <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
                     </File>
                 </Route>

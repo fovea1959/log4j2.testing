@@ -7,6 +7,7 @@ public class Main {
 
     public static void main(String[] args) {
         System.setProperty("log4j2.contextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
+        System.setProperty("org.frc3620.logging.dir", "w/");
         logger = LoggerFactory.getLogger(Main.class);
 
         fixupInfo(logger);
