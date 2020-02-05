@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="DEBUG" packages="org.wegscd">
+    <!-- perhaps try http://logging.apache.org/log4j/2.x/manual/customconfig.html#AddingToCurrent -->
+    <Appenders>
+        <Console name="Console">
+            <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+        </Console>
+        <Console name="TSConsole" Target="SYSTEM_ERR">
+            <PatternLayout pattern="e: %d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
+            <TimeIsSetFilter/>
+        </Console>
+        <Routing name="MyRoute">
+            <TimeIsSetFilter/>
+            <Routes>
+                <Route>
+                    <File name="MyFile" createOnDemand="true" fileName="log-xx.log">
+                        <!-- "log-${date:yyyy_MM_dd HH.mm.ss}.log" -->
+                        <PatternLayout>
+                            <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+                        </PatternLayout>
+                    </File>
+                </Route>
+            </Routes>
+        </Routing>
+        <!-- <MapAppender name="MapAppender" /> -->
+    </Appenders>
+    <Loggers>
+        <Root level="trace">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="MyRoute"/>
+            <!--
+            <AppenderRef ref="TSConsole"/>
+            <AppenderRef ref="MapAppender" />
+            -->
+        </Root>
+    </Loggers>
+</Configuration>
