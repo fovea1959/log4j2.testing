@@ -11,27 +11,28 @@ import org.apache.logging.log4j.core.layout.PatternLayout;
 
 import java.io.Serializable;
 
-@Plugin(name = "DriverStation_v1", category = Core.CATEGORY_NAME, elementType = Appender.ELEMENT_TYPE, printObject = true)
-public class DriverStationAppenderV1 extends AbstractAppender {
+@Plugin(name = "DriverStation", category = Core.CATEGORY_NAME, elementType = Appender.ELEMENT_TYPE, printObject = true)
+public class DriverStationAppender extends AbstractAppender {
 
-    public DriverStationAppenderV1(final String name, final Filter filter, final Layout<? extends Serializable> layout) {
+    public DriverStationAppender(final String name, final Filter filter, final Layout<? extends Serializable> layout) {
         super(name, filter, layout, false, null);
     }
 
     @PluginFactory
-    public static DriverStationAppenderV1 createAppender(@PluginAttribute("name") String name,
-                                                         @PluginAttribute("ignoreExceptions") boolean ignoreExceptions,
-                                                         @PluginElement("Layout") Layout layout,
-                                                         @PluginElement("Filters") Filter filter) {
+    public static DriverStationAppender createAppender(@PluginAttribute("name") String name,
+                                                       @PluginAttribute("ignoreExceptions") boolean ignoreExceptions,
+                                                       @PluginElement("Layout") Layout<? extends Serializable> layout,
+                                                       @PluginElement("Filters") Filter filter) {
         if (layout == null) {
             layout = PatternLayout.createDefaultLayout();
         }
 
-        return new DriverStationAppenderV1(name, filter, layout);
+        return new DriverStationAppender(name, filter, layout);
     }
 
     @Override
     public void append(final LogEvent event) {
+        // System.out.print ("DS1 on thread " + Thread.currentThread().getName());
         if (event.getLevel().isMoreSpecificThan(Level.ERROR)) {
             System.out.print ("ToDSE: " );
         } else if (event.getLevel().isMoreSpecificThan(Level.WARN)) {
@@ -40,8 +41,6 @@ public class DriverStationAppenderV1 extends AbstractAppender {
             System.out.print("ToDS: ");
         }
         byte[] ba = getLayout().toByteArray(event);
-        StringBuilder sb = new StringBuilder();
-        for (byte b : ba) sb.append((char) b);
-        System.out.print (sb.toString());
+        System.out.print (new String(ba));
     }
 }
