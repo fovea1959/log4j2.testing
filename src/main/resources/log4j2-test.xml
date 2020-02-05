@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="DEBUG" packages="org.wegscd">
+<Configuration status="INFO" packages="org.wegscd">
     <Appenders>
         <Console name="Console">
-            <Burst level="INFO" rate="4" maxBurst="4"/>
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
         <Routing name="MyRoute">
