@@ -16,8 +16,6 @@ import org.apache.logging.log4j.message.Message;
 @Plugin(name = "TimeIsSetFilter", category = Core.CATEGORY_NAME, elementType = Filter.ELEMENT_TYPE, printObject = true)
 public final class TimeIsSetFilter extends AbstractFilter {
 
-
-
     int i = 0;
     private TimeIsSetFilter(Result onMatch, Result onMismatch) {
         super(onMatch, onMismatch);
@@ -25,9 +23,7 @@ public final class TimeIsSetFilter extends AbstractFilter {
 
     @Override
     public Result filter(LogEvent event) {
-        Result r =  Result.NEUTRAL;
-        if (++i < 10) r = Result.DENY;
-        // System.out.println ("TimeIsSetFilter " + i + " " + r);
+        Result r = (++i >=  10) ? onMatch : onMismatch;
         return r;
     }
 

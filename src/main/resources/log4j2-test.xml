@@ -4,11 +4,11 @@
         <Console name="Console">
             <PatternLayout pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n"/>
         </Console>
-        <Routing name="MyRoute">
+        <Routing name="Dummy">
             <TimeIsSetFilter/>
-            <Routes pattern="x">
+            <Routes pattern="">
                 <Route>
-                    <File name="MyFile" createOnDemand="true" fileName="log-${date:yyyy_MM_dd HH.mm.ss}.log">
+                    <File name="MyFile" createOnDemand="true" fileName="${roborio:logdir}/${date:yyyyMMdd-HHmmss}.log">
                         <PatternLayout pattern="%d %p %c{1.} [%t] %m%n"/>
                     </File>
                 </Route>
@@ -19,7 +19,7 @@
     <Loggers>
         <Root level="trace">
             <AppenderRef ref="Console"/>
-            <AppenderRef ref="MyRoute"/>
+            <AppenderRef ref="Dummy"/>
             <AppenderRef ref="DS"/>
         </Root>
     </Loggers>

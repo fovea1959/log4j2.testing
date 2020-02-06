@@ -3,10 +3,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class Main {
-    static Logger logger = LoggerFactory.getLogger(Main.class);
+    static Logger logger;
 
     public static void main(String[] args) {
-        // System.setProperty("log4j2.contextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
+        System.setProperty("log4j2.contextSelector", "org.apache.logging.log4j.core.async.AsyncLoggerContextSelector");
+        System.setProperty("org.frc3620.logging.dir", "w/");
+        logger = LoggerFactory.getLogger(Main.class);
 
         fixupInfo(logger);
         logger.warn ("Start");
